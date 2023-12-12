@@ -1,1 +1,1 @@
-# finetuning-serving-vertex
+# finetuning-serving-zephyr7b-gptq-vertex
