@@ -1,0 +1,8 @@
+git+https://github.com/huggingface/optimum.git
+git+https://github.com/huggingface/transformers.git
+trl
+peft 
+bitsandbytes
+auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu118/
+scipy
+google-cloud-storage

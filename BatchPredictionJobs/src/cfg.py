@@ -1,0 +1,15 @@
+PROJECT = ""	# your project id
+DISPLAY_NAME = "batch_predict_scheduled_zephyr"
+GCS_DESTINATION = "" # destination path in GCS
+INSTANCES_FORMAT = "jsonl"
+PREDICTIONS_FORMAT = "jsonl"
+LOCATION = "europe-west4"
+API_ENDPOINT = f"{LOCATION}-aiplatform.googleapis.com"
+MODEL_ID = "" # your model id
+MODEL_NAME = f"projects/{PROJECT}/locations/{LOCATION}/models/{MODEL_ID}" 
+MACHINE_TYPE = "n1-highmem-8"
+ACCELERATOR_COUNT = 1
+ACCELERATOR_TYPE = "NVIDIA_TESLA_V100"
+STARTING_REPLICA_COUNT = 1
+MAX_REPLICA_COUNT = 1
+SYNC = False

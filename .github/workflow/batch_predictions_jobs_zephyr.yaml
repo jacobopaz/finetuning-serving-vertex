@@ -1,0 +1,45 @@
+name: Deploy Cloud Function
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+    - 'BatchPredictionJobs/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0.3.0
+      with:
+        project_id: 'projectid'
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        export_default_credentials: true
+
+    - name: Zip src directory
+      run: |
+        cd BatchPredictionJobs/src
+        zip -r src.zip .
+        mv src.zip ../tf-files
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.6.1
+
+    - name: Deployment with Terraform
+      working-directory: ./BatchPredictionJobs/tf-files
+      env: 
+        TF_VAR_service_account_email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+      run: |
+        terraform init
+        terraform apply -auto-approve -var "service_account_email=${{ env.TF_VAR_service_account_email }}"

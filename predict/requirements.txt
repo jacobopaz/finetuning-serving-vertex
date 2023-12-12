@@ -1,0 +1,6 @@
+git+https://github.com/huggingface/optimum.git
+git+https://github.com/huggingface/transformers.git
+peft 
+bitsandbytes
+auto-gptq
+scipy
