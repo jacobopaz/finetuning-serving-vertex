@@ -1,4 +1,4 @@
-PROJECT = ""	# your project id
+PROJECT = ""	# enter your project id
 DISPLAY_NAME = "batch_predict_scheduled_zephyr"
 GCS_DESTINATION = "" # destination path in GCS
 INSTANCES_FORMAT = "jsonl"
